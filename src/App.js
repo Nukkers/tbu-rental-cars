@@ -62,6 +62,9 @@ function App() {
                   {item.placeType === 'D' && (
                     <span class="badge bg-success">District</span>
                   )}
+                  {item.placeType === 'I' && (
+                    <span class="badge bg-warning">Region</span>
+                  )}
                 </div>
                 <div className="nameType">
                   <div className="" role={'listbox'}>
