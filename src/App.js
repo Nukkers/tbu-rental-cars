@@ -33,25 +33,50 @@ function App() {
   }
 
   return (
-    <div className="App-header container-fluid">
-      <form className="bg-warning p-3 rounded" role="search">
+    <div className="App-header container">
+      <div className="bg-warning form p-4 rounded" role="search">
         <input
           onChange={(e) => onChangeHandler(e.target.value)}
           value={text}
-          className="col-md-12"
-          type="text"
+          className="searchBar rounded"
+          type="search"
           placeholder="Pick-up location"
           aria-label="Pick-up location"
           aria-required="true"
         />
         {data &&
           text.length > 1 &&
-          data.map((item, key) => (
-            <div key={key} className="">
-              {item.name}
-            </div>
-          ))}
-      </form>
+          data.map((item, key) => {
+            return (
+              <div className="form-control">
+                <div key={key} className="labelType">
+                  {item.placeType === 'C' && (
+                    <span class="badge bg-primary">City</span>
+                  )}
+                  {item.placeType === 'A' && (
+                    <span class="badge bg-warning">Airport</span>
+                  )}
+                  {item.placeType === 'T' && (
+                    <span class="badge bg-primary">Station</span>
+                  )}
+                  {item.placeType === 'D' && (
+                    <span class="badge bg-success">District</span>
+                  )}
+                </div>
+                <div className="nameType">
+                  <div className="" role={'listbox'}>
+                    {item.name} {item.iata && <span>({item.iata})</span>}
+                  </div>
+                </div>
+
+                <div className="card-subtitle small labelSubtitle">
+                  {item.city && <span>{item.city},</span>} {item.region},{' '}
+                  {item.country}
+                </div>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }
